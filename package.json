@@ -1,0 +1,18 @@
+{
+  "name": "jb-trading-system",
+  "version": "1.0.0",
+  "description": "Professional-grade quantitative swing trading backtester inspired by Adam H. Grimes and James Boyd.",
+  "type": "module",
+  "scripts": {
+    "backtest": "node scripts/run-backtest.js",
+    "example": "node scripts/run-example.js",
+    "lint": "node --check scripts/run-backtest.js && node --check scripts/run-example.js",
+    "test": "node tests/run-tests.js"
+  },
+  "dependencies": {
+    "pg": "^8.13.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

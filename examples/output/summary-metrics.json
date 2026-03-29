@@ -1,0 +1,87 @@
+{
+  "metrics": {
+    "initialEquity": 100000,
+    "endingEquity": 149775.9169432246,
+    "totalReturn": 0.49775916943224613,
+    "cagr": 0.387262927329461,
+    "sharpeRatio": 6.551073088252254,
+    "maxDrawdown": 0.014827789040527083,
+    "tradeCount": 74,
+    "winRate": 0.8108108108108109,
+    "avgRPerTrade": 0.5607298191284292,
+    "expectancy": 672.6475262597913,
+    "averageWin": 873.8945105537429,
+    "averageLoss": -189.83954928571376
+  },
+  "breakdowns": {
+    "byStrategy": [
+      {
+        "key": "trend_continuation",
+        "trades": 70,
+        "winRate": 0.8,
+        "avgR": 0.5021049175042817,
+        "totalPnl": 41270.348381800024
+      },
+      {
+        "key": "trend_termination",
+        "trades": 4,
+        "winRate": 1,
+        "avgR": 1.5866655975510113,
+        "totalPnl": 8505.568561424527
+      }
+    ],
+    "byTrend": [
+      {
+        "key": 3,
+        "trades": 70,
+        "winRate": 0.8,
+        "avgR": 0.5021049175042817,
+        "totalPnl": 41270.348381800024
+      },
+      {
+        "key": 5,
+        "trades": 4,
+        "winRate": 1,
+        "avgR": 1.5866655975510113,
+        "totalPnl": 8505.568561424527
+      }
+    ],
+    "bySector": [
+      {
+        "key": "Technology",
+        "trades": 24,
+        "winRate": 0.75,
+        "avgR": 0.7698551978173448,
+        "totalPnl": 22829.478317674537
+      },
+      {
+        "key": "Consumer Discretionary",
+        "trades": 15,
+        "winRate": 0.8666666666666667,
+        "avgR": 0.5132884992035213,
+        "totalPnl": 8942.541735050005
+      },
+      {
+        "key": "Healthcare",
+        "trades": 16,
+        "winRate": 0.875,
+        "avgR": 0.48754132250699833,
+        "totalPnl": 9164.878928800017
+      },
+      {
+        "key": "Financials",
+        "trades": 11,
+        "winRate": 0.8181818181818182,
+        "avgR": 0.3847483779120377,
+        "totalPnl": 5003.171123550005
+      },
+      {
+        "key": "Energy",
+        "trades": 8,
+        "winRate": 0.75,
+        "avgR": 0.4106576328362849,
+        "totalPnl": 3835.8468381500006
+      }
+    ]
+  }
+}

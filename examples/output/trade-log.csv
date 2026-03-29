@@ -1,0 +1,75 @@
+ticker,strategy_type,sector,trend_type,weekly_trend_type,entry_date,exit_date,entry_price,exit_price,stop_price,shares,r_multiple,pnl,exit_reason
+TECHA,trend_continuation,Technology,3,3,2019-08-09,2019-08-23,93.4806,105.2406,84.6195,112,0.939,931.86,hma_cross
+TECHA,trend_continuation,Technology,3,3,2019-08-12,2019-08-23,94.7435,105.2406,84.6195,98,0.6971,691.61,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2019-08-12,2019-08-23,58.2652,68.4448,48.437,101,0.7997,793.83,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2019-08-13,2019-08-23,69.1612,76.2038,60.3496,113,0.6028,600.22,hma_cross
+FINA,trend_continuation,Financials,3,3,2019-08-13,2019-08-23,56.3874,63.8922,46.9751,106,0.6408,639.36,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2019-08-13,2019-08-23,59.538,68.4448,48.437,90,0.5913,590.74,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2019-08-14,2019-08-23,70.1751,76.2038,60.3496,102,0.4358,436.79,hma_cross
+ENRGA,trend_continuation,Energy,3,3,2019-08-14,2019-08-23,55.7479,64.0957,41.9597,73,0.521,524.45,hma_cross
+TECHA,trend_continuation,Technology,3,3,2019-08-28,2019-08-29,107.2362,107.2115,84.6195,46,-0.1968,-204.7,hma_cross
+TECHB,trend_continuation,Technology,3,3,2019-08-28,2019-08-29,88.6872,88.5504,64.572,43,-0.1617,-167.72,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2019-08-28,2019-08-29,77.721,77.5662,60.3496,60,-0.1487,-154.95,hma_cross
+ENRGA,trend_continuation,Energy,3,3,2019-08-28,2019-08-29,66.1664,65.7793,41.9597,43,-0.0976,-101.55,hma_cross
+FINA,trend_continuation,Financials,3,3,2019-08-28,2019-08-29,65.4951,65.2788,46.9751,56,-0.1287,-133.44,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2019-08-28,2019-08-29,70.3479,70.1878,48.437,48,-0.154,-161.98,hma_cross
+TECHA,trend_continuation,Technology,3,3,2019-08-29,2019-08-30,107.1945,106.755,84.6195,46,-0.0195,-20.22,hma_cross
+TECHA,trend_continuation,Technology,3,3,2019-10-01,2019-10-16,100.9843,116.0793,93.99,149,1.6313,1700.04,target2
+TECHA,trend_continuation,Technology,3,3,2019-10-02,2019-10-17,102.2443,115.2693,93.99,126,1.1775,1224.69,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2019-10-03,2019-10-17,72.8764,81.8311,65.5683,143,1.027,1073.28,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2019-10-03,2019-10-17,64.5522,75.8688,55.3304,113,1.0112,1053.75,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2019-10-04,2019-10-17,74.0001,81.8311,65.5683,125,0.7571,797.91,hma_cross
+FINA,trend_continuation,Financials,3,3,2019-10-04,2019-10-17,60.6457,68.9902,51.6892,117,0.8113,850.17,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2019-10-04,2019-10-17,65.9669,75.8688,55.3304,99,0.744,783.39,hma_cross
+ENRGA,trend_continuation,Energy,3,3,2019-10-07,2019-10-17,59.7894,69.0266,46.5225,80,0.6568,697.05,hma_cross
+TECHA,trend_continuation,Technology,3,3,2019-10-16,2019-10-17,115.0275,115.2693,93.99,53,-0.1427,-159.06,hma_cross
+TECHA,trend_continuation,Technology,3,3,2019-11-25,2019-12-03,111.1752,122.3551,104.917,179,1.3438,1505.3,target2
+TECHA,trend_continuation,Technology,3,3,2019-11-26,2019-12-10,112.4617,124.4909,104.917,149,1.087,1221.97,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2019-11-27,2019-12-10,78.6087,86.8557,71.9823,170,0.9594,1080.75,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2019-11-27,2019-12-10,72.1077,82.5297,63.7379,134,0.9403,1054.56,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2019-11-28,2019-12-10,79.6135,86.8557,71.9823,148,0.7014,792.18,hma_cross
+ENRGA,trend_continuation,Energy,3,3,2019-11-28,2019-12-10,63.062,73.1436,52.6335,108,0.8589,967.37,hma_cross
+FINA,trend_continuation,Financials,3,3,2019-11-28,2019-12-10,65.7278,73.4533,57.6526,140,0.7652,865.03,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2019-11-28,2019-12-10,73.3738,82.5297,63.7379,117,0.6876,775.2,hma_cross
+TECHB,trend_termination,Technology,5,3,2019-12-18,2019-12-27,100.9337,93.4484,104.6422,325,1.6536,1992.98,target2
+TECHA,trend_continuation,Technology,3,3,2020-01-16,2020-01-29,119.9947,133.2375,112.7394,168,0.9996,1218.45,hma_cross
+TECHA,trend_continuation,Technology,3,3,2020-01-17,2020-01-29,123.3249,133.2375,112.7394,116,0.3705,455,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2020-01-20,2020-01-29,85.1283,91.6245,75.8028,132,0.4892,602.15,hma_cross
+FINA,trend_continuation,Financials,3,3,2020-01-20,2020-01-29,70.7578,77.691,60.7756,123,0.5332,654.68,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2020-01-20,2020-01-29,80.6375,88.8507,68.8935,104,0.4781,583.98,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2020-01-21,2020-01-29,86.2794,91.6245,75.8028,118,0.3256,402.46,hma_cross
+ENRGA,trend_continuation,Energy,3,3,2020-01-21,2020-01-29,69.6393,77.0568,54.8713,83,0.4165,510.56,hma_cross
+FINA,trend_continuation,Financials,3,3,2020-01-21,2020-01-29,71.996,77.691,60.7756,110,0.3628,447.83,hma_cross
+TECHA,trend_termination,Technology,5,3,2020-02-10,2020-02-19,131.5177,124.139,135.1739,348,1.6496,2098.86,target2
+ENRGA,trend_continuation,Energy,3,3,2020-03-12,2020-03-20,73.1691,80.8915,59.0798,93,0.4868,637.9,hma_cross
+TECHA,trend_continuation,Technology,3,3,2020-03-09,2020-03-23,130.9756,141.1029,121.8522,141,0.7874,1012.93,hma_cross
+TECHA,trend_continuation,Technology,3,3,2020-03-10,2020-03-23,132.2477,141.1029,121.8522,124,0.5667,730.45,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2020-03-10,2020-03-23,88.829,95.5191,80.8068,161,0.684,883.44,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2020-03-10,2020-03-23,85.6236,94.0989,75.5186,128,0.6712,868.13,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2020-03-11,2020-03-23,89.842,95.5191,80.8068,144,0.4944,643.2,hma_cross
+FINA,trend_continuation,Financials,3,3,2020-03-11,2020-03-23,74.9062,80.911,65.2595,134,0.537,694.1,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2020-03-11,2020-03-23,86.8997,94.0989,75.5186,114,0.4838,627.7,hma_cross
+TECHA,trend_continuation,Technology,3,3,2020-03-30,2020-03-31,142.7225,141.7789,137.4947,259,-0.0492,-66.6,hma_cross
+TECHB,trend_continuation,Technology,3,3,2020-03-30,2020-03-31,119.0422,117.8763,113.2676,234,-0.2019,-272.82,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2020-03-30,2020-03-31,96.5777,95.6624,92.3284,319,-0.2154,-291.97,hma_cross
+ENRGA,trend_continuation,Energy,3,3,2020-03-30,2020-03-31,80.6744,79.1536,74.455,218,-0.2445,-331.54,hma_cross
+FINA,trend_continuation,Financials,3,3,2020-03-30,2020-03-31,81.9513,80.9007,77.3276,293,-0.2272,-307.81,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2020-03-30,2020-03-31,95.4494,94.338,90.1368,255,-0.2092,-283.41,hma_cross
+TECHA,trend_continuation,Technology,3,3,2020-04-29,2020-05-19,138.4728,152.3419,131.0977,181,1.3178,1759.16,hma_cross
+TECHA,trend_continuation,Technology,3,3,2020-04-30,2020-05-19,139.7564,152.3419,131.0977,155,0.9747,1308.1,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2020-05-01,2020-05-19,93.5754,102.0149,85.8211,173,0.8085,1084.64,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2020-05-01,2020-05-19,91.9367,102.6287,82.1764,138,0.797,1073.47,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2020-05-05,2020-05-19,94.6585,102.0149,85.8211,153,0.5871,793.78,hma_cross
+ENRGA,trend_continuation,Energy,3,3,2020-05-05,2020-05-19,75.4545,85.5324,63.1317,110,0.6873,931.6,hma_cross
+FINA,trend_continuation,Financials,3,3,2020-05-05,2020-05-19,79.1118,86.9084,69.6833,143,0.6286,847.55,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2020-05-05,2020-05-19,93.3106,102.6287,82.1764,121,0.5774,777.9,hma_cross
+TECHA,trend_termination,Technology,5,3,2020-05-26,2020-06-03,149.7938,142.2923,154.0092,338,1.4166,2018.33,target2
+TECHA,trend_continuation,Technology,3,3,2020-06-23,2020-07-08,148.6763,162.7397,140.9609,187,0.654,943.55,target2
+TECHA,trend_continuation,Technology,3,3,2020-06-24,2020-07-08,149.9683,161.7282,140.9609,160,0.3552,511.91,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2020-06-25,2020-07-08,99.2887,107.3168,91.3407,181,0.2138,307.63,hma_cross
+FINA,trend_continuation,Financials,3,3,2020-06-25,2020-07-08,83.1687,91.7325,74.6908,170,0.2208,318.2,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2020-06-25,2020-07-08,99.4686,109.616,89.4559,144,0.208,299.93,hma_cross
+HEALA,trend_continuation,Healthcare,3,3,2020-06-26,2020-07-08,100.2885,107.3168,91.3407,161,0.0787,113.37,hma_cross
+FINA,trend_continuation,Financials,3,3,2020-06-26,2020-07-08,84.2404,91.7325,74.6908,151,0.0884,127.5,hma_cross
+CONS,trend_continuation,Consumer Discretionary,3,3,2020-06-26,2020-07-08,100.7283,109.616,89.4559,128,0.073,105.36,hma_cross
+TECHB,trend_termination,Technology,5,3,2020-07-16,2020-07-22,133.2017,125.4345,137.0967,378,1.627,2395.4,target2
