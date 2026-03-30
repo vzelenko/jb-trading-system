@@ -1,79 +1,51 @@
 {
   "metrics": {
     "initialEquity": 100000,
-    "endingEquity": 157842.73823062057,
-    "totalReturn": 0.5784273823062057,
-    "cagr": 0.3150272846927402,
-    "sharpeRatio": 5.661206023808164,
-    "maxDrawdown": 0.006954834316110299,
-    "tradeCount": 55,
-    "winRate": 0.9090909090909091,
-    "avgRPerTrade": 0.8531039020734278,
-    "expectancy": 1051.686149647647,
-    "averageWin": 1165.2016576604117,
-    "averageLoss": -83.46893047999977
+    "endingEquity": 113373.44992418298,
+    "totalReturn": 0.13373449924182976,
+    "cagr": 0.0782185949150529,
+    "sharpeRatio": 5.110146841918945,
+    "maxDrawdown": 0.0005485768104340057,
+    "tradeCount": 7,
+    "winRate": 1,
+    "avgRPerTrade": 1.8159642885695066,
+    "expectancy": 1910.4928463118565,
+    "averageWin": 1910.4928463118565,
+    "averageLoss": null
   },
   "breakdowns": {
     "byStrategy": [
       {
         "key": "trend_continuation",
-        "trades": 55,
-        "winRate": 0.9090909090909091,
-        "avgR": 0.8531039020734278,
-        "totalPnl": 57842.73823062058
+        "trades": 7,
+        "winRate": 1,
+        "avgR": 1.8159642885695066,
+        "totalPnl": 13373.449924182996
       }
     ],
     "byTrend": [
       {
-        "key": 3,
-        "trades": 50,
-        "winRate": 0.9,
-        "avgR": 0.749269377719963,
-        "totalPnl": 46979.63999580001
-      },
-      {
         "key": 2,
         "trades": 5,
         "winRate": 1,
-        "avgR": 1.8914491456080753,
-        "totalPnl": 10863.098234820576
+        "avgR": 1.892067239025301,
+        "totalPnl": 9835.353933732998
+      },
+      {
+        "key": 3,
+        "trades": 2,
+        "winRate": 1,
+        "avgR": 1.6257069124300205,
+        "totalPnl": 3538.0959904499978
       }
     ],
     "bySector": [
       {
         "key": "Technology",
-        "trades": 19,
-        "winRate": 0.9473684210526315,
-        "avgR": 1.225212691542026,
-        "totalPnl": 28141.737100470567
-      },
-      {
-        "key": "Healthcare",
-        "trades": 10,
-        "winRate": 1,
-        "avgR": 0.7787202778472537,
-        "totalPnl": 9762.19419535001
-      },
-      {
-        "key": "Consumer Discretionary",
-        "trades": 11,
-        "winRate": 1,
-        "avgR": 0.8270074566200137,
-        "totalPnl": 11324.904503400006
-      },
-      {
-        "key": "Financials",
-        "trades": 8,
-        "winRate": 0.875,
-        "avgR": 0.5794223760515997,
-        "totalPnl": 5806.686303100004
-      },
-      {
-        "key": "Energy",
         "trades": 7,
-        "winRate": 0.5714285714285714,
-        "avgR": 0.3031442378620778,
-        "totalPnl": 2807.2161283000014
+        "winRate": 1,
+        "avgR": 1.8159642885695066,
+        "totalPnl": 13373.449924182996
       }
     ]
   }

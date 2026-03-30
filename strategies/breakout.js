@@ -18,15 +18,35 @@ export function buildBreakoutSignal(context, index, config) {
   const breakout = candle.close_price > resistance && bullishCandle(candle);
   const prior = index > 0 ? context.daily[index - 1] : null;
   const retestHeld = prior ? prior.close_price <= resistance && candle.low_price <= resistance * 1.005 : true;
+  const breakoutClosePct = safeDivide(candle.close_price - resistance, resistance);
+  const breakoutExtensionAtr = safeDivide(candle.close_price - resistance, candle.atr);
+  const priorClosesBelowResistance = context.daily
+    .slice(Math.max(0, index - strategyConfig.retestBars), index)
+    .every((bar) => bar.close_price <= resistance);
 
-  if (nearResistanceCount < 2 || !breakout || !retestHeld) {
+  if (
+    nearResistanceCount < strategyConfig.minTouches ||
+    !breakout ||
+    !retestHeld ||
+    !priorClosesBelowResistance ||
+    !Number.isFinite(breakoutClosePct) ||
+    breakoutClosePct < strategyConfig.minBreakoutClosePct ||
+    !Number.isFinite(breakoutExtensionAtr) ||
+    breakoutExtensionAtr > strategyConfig.maxBreakoutExtensionAtr
+  ) {
     return null;
   }
 
   const stopPrice = resistance - ((candle.atr ?? 0) * strategyConfig.stopAtrBuffer);
   const riskPerShare = candle.close_price - stopPrice;
+  const target2 = candle.close_price + ((candle.atr ?? riskPerShare) * strategyConfig.targetAtrMultiplier);
+  const rewardToTarget2 = target2 - candle.close_price;
 
-  if (riskPerShare <= 0) {
+  if (
+    riskPerShare <= 0 ||
+    rewardToTarget2 <= 0 ||
+    rewardToTarget2 < riskPerShare * strategyConfig.minRewardToTarget2
+  ) {
     return null;
   }
 
@@ -42,9 +62,15 @@ export function buildBreakoutSignal(context, index, config) {
     weeklyTrendType: context.weekly.trendType,
     stopPrice,
     target1: candle.close_price + riskPerShare,
-    target2: candle.close_price + ((candle.atr ?? riskPerShare) * strategyConfig.targetAtrMultiplier),
+    target2,
     metadata: {
       breakoutLevel: resistance
     }
   };
+}
+
+function safeDivide(numerator, denominator) {
+  return Number.isFinite(numerator) && Number.isFinite(denominator) && denominator !== 0
+    ? numerator / denominator
+    : null;
 }

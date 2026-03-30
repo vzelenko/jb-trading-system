@@ -32,6 +32,7 @@ export function attemptEntry({ portfolioState, signal, nextCandle, config }) {
     portfolioState,
     signal,
     proposedRiskAmount: sizing.riskAmount,
+    proposedNotional: entryPrice * sizing.shares,
     config
   })) {
     return null;

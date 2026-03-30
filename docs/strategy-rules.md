@@ -15,20 +15,21 @@ Weekly trend is aligned to each daily bar and used as higher-timeframe context.
 ## Strategy 1: Trend Continuation
 
 - Requires daily trend 2 or 3 and weekly trend 2, 3, or 4
-- Pullback must remain near EMA fast/slow relative to ATR
+- Pullback must remain near EMA fast/slow relative to ATR and show a recent test of EMA fast
 - MACD must remain bullish
-- Entry confirmation is a bullish candle, optionally above HMA fast
+- Entry confirmation is a bullish candle reclaiming EMA fast, optionally above HMA fast
 - Stop uses the tighter of recent swing low or ATR-based stop
-- Target 1 uses prior swing high
+- Target 1 uses prior swing high and must offer a minimum reward relative to risk
 - Target 2 uses a fixed R multiple
 
 ## Strategy 2: Breakout
 
 - Requires trend 3 or 4 plus weekly confirmation
-- Resistance must be touched at least twice in a recent consolidation
-- Entry requires a close above resistance with a valid retest context
+- Resistance must be touched repeatedly in a recent consolidation
+- Entry requires a close above resistance with a valid retest context and prior closes below the level
+- Breakout closes that are too shallow or too extended relative to ATR are rejected
 - Stop is just below the breakout level with ATR buffer
-- Targets use 1R for partial and ATR extension for final exit
+- Targets use 1R for partial and ATR extension for final exit, with a minimum reward-to-risk threshold
 
 ## Strategy 3: Breakout Failure
 

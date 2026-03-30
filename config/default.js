@@ -40,25 +40,31 @@ export const defaultConfig = {
   strategies: {
     trendContinuation: {
       enabled: true,
-      pullbackAtrThreshold: 1.25,
+      pullbackAtrThreshold: 0.8,
       stopAtrMultiplier: 1.75,
       target2RMultiple: 2,
+      minRewardToTarget1: 0.75,
+      requirePriorPullback: true,
       useHmaConfirmation: true
     },
     breakout: {
       enabled: true,
-      consolidationBars: 8,
+      consolidationBars: 10,
       retestBars: 3,
-      stopAtrBuffer: 0.4,
+      stopAtrBuffer: 0.3,
+      minTouches: 3,
+      minBreakoutClosePct: 0.0025,
+      maxBreakoutExtensionAtr: 1.2,
+      minRewardToTarget2: 1.25,
       targetAtrMultiplier: 2.5
     },
     breakoutFailure: {
-      enabled: true,
+      enabled: false,
       failureBars: 3,
       impulseAtrThreshold: 0.8
     },
     trendTermination: {
-      enabled: true,
+      enabled: false,
       extensionAtrMultiple: 2,
       exhaustionHistogramLookback: 3
     }

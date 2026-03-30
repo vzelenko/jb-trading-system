@@ -2,7 +2,14 @@ export function calculateOpenRisk(openPositions) {
   return openPositions.reduce((total, position) => total + position.openRiskAmount, 0);
 }
 
-export function canOpenPosition({ portfolioState, signal, proposedRiskAmount, config }) {
+export function calculateGrossExposure(openPositions) {
+  return openPositions.reduce(
+    (total, position) => total + (position.entryPrice * position.remainingShares),
+    0
+  );
+}
+
+export function canOpenPosition({ portfolioState, signal, proposedRiskAmount, proposedNotional, config }) {
   if (portfolioState.openPositions.length >= config.portfolio.maxPositions) {
     return false;
   }
@@ -14,5 +21,10 @@ export function canOpenPosition({ portfolioState, signal, proposedRiskAmount, co
 
   const maxOpenRisk = portfolioState.equity * config.portfolio.maxOpenRiskPct;
   const currentOpenRisk = calculateOpenRisk(portfolioState.openPositions);
-  return currentOpenRisk + proposedRiskAmount <= maxOpenRisk;
+  if (currentOpenRisk + proposedRiskAmount > maxOpenRisk) {
+    return false;
+  }
+
+  const currentGrossExposure = calculateGrossExposure(portfolioState.openPositions);
+  return currentGrossExposure + proposedNotional <= portfolioState.equity;
 }
