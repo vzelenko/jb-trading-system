@@ -54,6 +54,36 @@ npm run example
 
 Outputs are written to `examples/output/`.
 
+## Thinkorswim Desktop
+
+Thinkorswim scripts are in `tos/`:
+
+- `trend_continuation_study.ts`
+- `trend_continuation_strategy.ts`
+- `breakout_study.ts`
+- `breakout_strategy.ts`
+
+To load a study:
+
+1. Open `Charts`
+2. Click `Studies` -> `Edit Studies...`
+3. Click `Create...`
+4. Paste the contents of one `*_study.ts` file
+5. Name the study and click `OK`
+6. Click `Apply`
+
+To load a strategy with `AddOrder`:
+
+1. Open `Charts`
+2. Click `Studies` -> `Edit Studies...`
+3. Click `Strategies`
+4. Click `Create...`
+5. Paste the contents of one `*_strategy.ts` file
+6. Name the strategy and click `OK`
+7. Click `Apply`
+
+Use the study files for chart signals and alerts. Use the strategy files for Thinkorswim backtesting and order markers.
+
 ## Assumptions
 
 - Entries execute at the next session open plus 0.05% slippage
