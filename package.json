@@ -10,6 +10,7 @@
     "test": "node tests/run-tests.js"
   },
   "dependencies": {
+    "dotenv": "^16.6.1",
     "pg": "^8.13.3"
   },
   "engines": {

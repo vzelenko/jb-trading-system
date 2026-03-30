@@ -57,12 +57,12 @@ export function classifyTrendSeries(candles, config) {
     } else if (earlyUp) {
       trendType = 2;
       trendLabel = "Reversal / Early Uptrend";
-    } else if (strongUp) {
-      trendType = 3;
-      trendLabel = "Strong Uptrend";
     } else if (extendedUp) {
       trendType = 4;
       trendLabel = "Extended Uptrend";
+    } else if (strongUp) {
+      trendType = 3;
+      trendLabel = "Strong Uptrend";
     } else if (exhaustion) {
       trendType = 5;
       trendLabel = "Exhaustion / Distribution";

@@ -1,3 +1,5 @@
+import "./loadEnv.js";
+
 export const defaultConfig = {
   database: {
     connectionString: process.env.DATABASE_URL ?? null,
@@ -25,8 +27,10 @@ export const defaultConfig = {
     hmaFast: 10,
     hmaSlow: 20,
     atrLength: 14,
-    macdFast: 12,
-    macdSlow: 26,
+    // macdFast: 12,
+    // macdSlow: 26,
+    macdFast: 6,
+    macdSlow: 13,
     macdSignal: 9,
     slopeLookback: 5,
     supportResistanceWindow: 20,

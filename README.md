@@ -29,8 +29,14 @@ Systematic swing-trading backtester for discretionary concepts inspired by Adam 
 ## Running Against PostgreSQL
 
 1. Install dependencies: `npm install`
-2. Set database credentials with either `DATABASE_URL` or `PGHOST`/`PGPORT`/`PGDATABASE`/`PGUSER`/`PGPASSWORD`
+2. Create a `.env` file from `.env.example`, or otherwise set database credentials with either `DATABASE_URL` or `PGHOST`/`PGPORT`/`PGDATABASE`/`PGUSER`/`PGPASSWORD`
 3. Run `npm run backtest`
+
+Example `.env`:
+
+```bash
+cp .env.example .env
+```
 
 Optional config overrides:
 

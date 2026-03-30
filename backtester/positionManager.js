@@ -54,7 +54,7 @@ function scaleOut(portfolioState, position, exitPrice) {
   }
 
   const pnl = calculatePnl(position, exitPrice, sharesToExit);
-  portfolioState.cash += sharesToExit * realizedCashValue(position, exitPrice);
+  portfolioState.cash += exitCashDelta(position, exitPrice, sharesToExit);
   position.remainingShares -= sharesToExit;
   position.realizedPnl += pnl;
   position.t1Hit = true;
@@ -64,7 +64,7 @@ function scaleOut(portfolioState, position, exitPrice) {
 
 function exitRemaining(portfolioState, position, exitDate, exitPrice, reason) {
   const pnl = position.realizedPnl + calculatePnl(position, exitPrice, position.remainingShares);
-  portfolioState.cash += position.remainingShares * realizedCashValue(position, exitPrice);
+  portfolioState.cash += exitCashDelta(position, exitPrice, position.remainingShares);
   const totalR = position.riskPerShare === 0 ? null : pnl / (position.riskPerShare * position.shares);
 
   closePosition(portfolioState, position, {
@@ -83,5 +83,9 @@ function calculatePnl(position, exitPrice, shares) {
 }
 
 function realizedCashValue(position, exitPrice) {
-  return position.direction === "long" ? exitPrice : position.entryPrice + (position.entryPrice - exitPrice);
+  return position.direction === "long" ? exitPrice : -exitPrice;
+}
+
+function exitCashDelta(position, exitPrice, shares) {
+  return shares * realizedCashValue(position, exitPrice);
 }

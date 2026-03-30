@@ -19,7 +19,13 @@ export function createPostgresDataSource(databaseConfig) {
             `;
         const params = indexMembership ? [indexMembership] : [];
         const result = await db.query(query, params);
-        return result.rows;
+        return result.rows.map((row) => ({
+          id: Number(row.id),
+          ticker: row.ticker,
+          sector: row.sector,
+          industry: row.industry,
+          index_membership: row.index_membership === null ? null : Number(row.index_membership)
+        }));
       });
     },
 
@@ -46,8 +52,14 @@ export function createPostgresDataSource(databaseConfig) {
         );
 
         return result.rows.map((row) => ({
-          ...row,
-          date: row.date.toISOString().slice(0, 10)
+          security_id: Number(row.security_id),
+          date: row.date.toISOString().slice(0, 10),
+          open_price: Number(row.open_price),
+          high_price: Number(row.high_price),
+          low_price: Number(row.low_price),
+          close_price: Number(row.close_price),
+          volume: Number(row.volume),
+          timeframe: Number(row.timeframe)
         }));
       });
     }

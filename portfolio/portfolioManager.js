@@ -75,7 +75,7 @@ export function markToMarket(portfolioState, priceMap) {
     const lastPrice = candle.close_price;
     const positionValue = position.direction === "long"
       ? position.remainingShares * lastPrice
-      : position.remainingShares * ((2 * position.entryPrice) - lastPrice);
+      : -(position.remainingShares * lastPrice);
     return total + positionValue;
   }, 0);
 

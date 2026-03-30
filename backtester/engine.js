@@ -41,7 +41,7 @@ export async function runBacktest({ dataSource, config }) {
       if (nextCandle) {
         const position = attemptEntry({ portfolioState, signal, nextCandle, config });
         if (position) {
-          portfolioState.cash -= position.entryPrice * position.shares;
+          portfolioState.cash += entryCashDelta(position);
         }
       }
     }
@@ -98,6 +98,12 @@ export async function runBacktest({ dataSource, config }) {
     breakdowns,
     tradeLog
   };
+}
+
+function entryCashDelta(position) {
+  return position.direction === "long"
+    ? -(position.entryPrice * position.shares)
+    : position.entryPrice * position.shares;
 }
 
 async function writeOutputs({ config, tradeLog, metrics, breakdowns }) {
