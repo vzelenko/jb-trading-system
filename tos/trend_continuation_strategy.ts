@@ -68,8 +68,9 @@ def entrySignal =
     rewardToTarget1 >= setupRisk * minRewardToTarget1;
 
 def hasPosition = EntryPrice() > 0;
-def stopLevel = EntryPrice() - atr * stopAtrMultiplier;
-def target2Level = EntryPrice() + (atr * stopAtrMultiplier * target2RMultiple);
+rec entryAtr = if hasPosition and !hasPosition[1] then atr else if hasPosition then entryAtr[1] else Double.NaN;
+def stopLevel = EntryPrice() - entryAtr * stopAtrMultiplier;
+def target2Level = EntryPrice() + (entryAtr * stopAtrMultiplier * target2RMultiple);
 def exitSignal = hasPosition and (l <= stopLevel or h >= target2Level or hmaFast < hmaSlow);
 
 AddOrder(OrderType.BUY_AUTO, entrySignal, open[-1], 100, Color.GREEN, Color.GREEN, "TC Entry");

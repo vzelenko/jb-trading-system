@@ -27,15 +27,15 @@ export const defaultConfig = {
     hmaFast: 10,
     hmaSlow: 20,
     atrLength: 14,
-    // macdFast: 12,
-    // macdSlow: 26,
+    // Half-length MACD (6/13/9) instead of standard 12/26/9
     macdFast: 6,
     macdSlow: 13,
     macdSignal: 9,
     slopeLookback: 5,
     supportResistanceWindow: 20,
     supportResistanceTolerancePct: 0.0075,
-    swingLookback: 2
+    swingLookback: 2,
+    rocPeriods: [20, 50]
   },
   strategies: {
     trendContinuation: {
@@ -61,7 +61,8 @@ export const defaultConfig = {
     breakoutFailure: {
       enabled: false,
       failureBars: 3,
-      impulseAtrThreshold: 0.8
+      impulseAtrThreshold: 0.8,
+      minRewardToRisk: 0.75
     },
     trendTermination: {
       enabled: false,

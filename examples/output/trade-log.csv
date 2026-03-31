@@ -1,8 +1,5 @@
 ticker,strategy_type,sector,trend_type,weekly_trend_type,entry_date,exit_date,entry_price,exit_price,stop_price,shares,r_multiple,pnl,exit_reason
-TECHA,trend_continuation,Technology,2,3,2019-04-22,2019-04-30,70.7815,79.3956,65.9276,206,1.9414,1941.19,target2
-TECHB,trend_continuation,Technology,2,3,2019-06-17,2019-06-24,61.2834,73.4779,55.8458,187,1.8518,1882.93,target2
-TECHA,trend_continuation,Technology,2,3,2019-08-05,2019-08-14,89.3206,98.9079,84.0078,195,1.7533,1816.47,target2
-TECHA,trend_continuation,Technology,2,3,2019-09-25,2019-10-07,97.5161,108.2012,92.4696,209,2.1624,2280.77,target2
-TECHA,trend_continuation,Technology,3,3,2019-10-01,2019-10-16,100.9843,116.0793,93.99,152,1.6277,1730.49,target2
-TECHA,trend_continuation,Technology,2,3,2019-11-19,2019-11-28,108.1974,116.8548,103.2747,222,1.7514,1913.99,target2
-TECHA,trend_continuation,Technology,3,3,2020-04-28,2020-05-13,137.3171,150.7972,131.0977,179,1.6237,1807.61,target2
+TECHA,trend_continuation,Technology,2,3,2019-09-25,2019-10-07,97.5161,108.2012,92.4696,198,,2124.59,target2
+TECHA,trend_continuation,Technology,3,3,2019-10-01,2019-10-10,100.9843,112.5284,95.7654,193,,1821.28,target2
+TECHA,trend_continuation,Technology,2,3,2019-11-19,2019-11-28,108.1974,116.8548,103.2747,211,,1755.28,target2
+TECHA,trend_continuation,Technology,3,3,2020-04-28,2020-05-13,137.3171,150.7018,131.1454,171,,1662.14,target2

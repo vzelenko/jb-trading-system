@@ -14,8 +14,9 @@ export function stdDev(values) {
   }
 
   const mean = average(clean);
-  const variance = average(clean.map((value) => (value - mean) ** 2));
-  return variance === null ? null : Math.sqrt(variance);
+  const squaredDiffs = clean.map((value) => (value - mean) ** 2);
+  const variance = sum(squaredDiffs) / (clean.length - 1);
+  return Math.sqrt(variance);
 }
 
 export function maxDrawdown(equityCurve) {

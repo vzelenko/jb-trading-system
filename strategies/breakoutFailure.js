@@ -8,6 +8,12 @@ export function buildBreakoutFailureSignal(context, index, config) {
     return null;
   }
 
+  // Require weekly downtrend or exhaustion for short entries
+  const weeklyTrend = context.weekly?.trendType ?? 0;
+  if (![1, 5].includes(weeklyTrend)) {
+    return null;
+  }
+
   const lookback = context.daily.slice(index - strategyConfig.failureBars, index);
   const breakoutBar = [...lookback].reverse().find(
     (bar) => Number.isFinite(bar.resistanceLevel) && bar.close_price > bar.resistanceLevel
@@ -30,6 +36,23 @@ export function buildBreakoutFailureSignal(context, index, config) {
   const rangeMidpoint = breakoutBar.resistanceLevel - ((stopPrice - breakoutBar.resistanceLevel) * 0.5);
 
   if (!Number.isFinite(stopPrice) || stopPrice <= candle.close_price) {
+    return null;
+  }
+
+  if (!Number.isFinite(target2)) {
+    return null;
+  }
+
+  // Validate target1 is below entry for shorts
+  if (rangeMidpoint >= candle.close_price) {
+    return null;
+  }
+
+  // Minimum reward-to-risk check
+  const riskPerShare = stopPrice - candle.close_price;
+  const rewardToTarget1 = candle.close_price - rangeMidpoint;
+  const minRewardToRisk = strategyConfig.minRewardToRisk ?? 0.75;
+  if (riskPerShare <= 0 || rewardToTarget1 < riskPerShare * minRewardToRisk) {
     return null;
   }
 

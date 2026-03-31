@@ -1,51 +1,51 @@
 {
   "metrics": {
     "initialEquity": 100000,
-    "endingEquity": 113373.44992418298,
-    "totalReturn": 0.13373449924182976,
-    "cagr": 0.0782185949150529,
-    "sharpeRatio": 5.110146841918945,
-    "maxDrawdown": 0.0005485768104340057,
-    "tradeCount": 7,
+    "endingEquity": 107363.29056858952,
+    "totalReturn": 0.07363290568589524,
+    "cagr": 0.04520015386563969,
+    "sharpeRatio": 3.6406745539378575,
+    "maxDrawdown": 0.0005500119824280765,
+    "tradeCount": 4,
     "winRate": 1,
-    "avgRPerTrade": 1.8159642885695066,
-    "expectancy": 1910.4928463118565,
-    "averageWin": 1910.4928463118565,
+    "avgRPerTrade": null,
+    "expectancy": 1840.8226421473855,
+    "averageWin": 1840.8226421473855,
     "averageLoss": null
   },
   "breakdowns": {
     "byStrategy": [
       {
         "key": "trend_continuation",
-        "trades": 7,
+        "trades": 4,
         "winRate": 1,
-        "avgR": 1.8159642885695066,
-        "totalPnl": 13373.449924182996
+        "avgR": null,
+        "totalPnl": 7363.290568589542
       }
     ],
     "byTrend": [
       {
         "key": 2,
-        "trades": 5,
+        "trades": 2,
         "winRate": 1,
-        "avgR": 1.892067239025301,
-        "totalPnl": 9835.353933732998
+        "avgR": null,
+        "totalPnl": 3879.8716495850817
       },
       {
         "key": 3,
         "trades": 2,
         "winRate": 1,
-        "avgR": 1.6257069124300205,
-        "totalPnl": 3538.0959904499978
+        "avgR": null,
+        "totalPnl": 3483.418919004461
       }
     ],
     "bySector": [
       {
         "key": "Technology",
-        "trades": 7,
+        "trades": 4,
         "winRate": 1,
-        "avgR": 1.8159642885695066,
-        "totalPnl": 13373.449924182996
+        "avgR": null,
+        "totalPnl": 7363.290568589542
       }
     ]
   }

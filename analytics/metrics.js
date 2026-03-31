@@ -4,7 +4,10 @@ export function calculatePerformanceMetrics(portfolioState) {
   const trades = portfolioState.closedTrades;
   const equityCurve = portfolioState.equityCurve;
   const totalReturn = safeDivide(portfolioState.equity - portfolioState.initialEquity, portfolioState.initialEquity) ?? 0;
-  const years = equityCurve.length / 252 || 1;
+  const msPerYear = 365.25 * 24 * 60 * 60 * 1000;
+  const firstDate = new Date(equityCurve[0]?.date);
+  const lastDate = new Date(equityCurve[equityCurve.length - 1]?.date);
+  const years = equityCurve.length > 1 ? (lastDate - firstDate) / msPerYear || 1 : 1;
   const cagr = years > 0 ? ((portfolioState.equity / portfolioState.initialEquity) ** (1 / years)) - 1 : 0;
   const dailyReturns = equityCurve.slice(1).map((point, index) => {
     const previous = equityCurve[index].equity;

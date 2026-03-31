@@ -26,5 +26,17 @@ export function detectSwings(candles, lookback = 2) {
     swingLow[index] = isLow;
   }
 
-  return { swingHigh, swingLow };
+  // Shift swing flags forward by lookback to remove lookahead bias.
+  // A swing at index i requires bars i+1..i+lookback to confirm,
+  // so it is only known at bar i+lookback.
+  const delayedSwingHigh = Array(candles.length).fill(false);
+  const delayedSwingLow = Array(candles.length).fill(false);
+  for (let i = 0; i < candles.length; i += 1) {
+    if (i + lookback < candles.length) {
+      delayedSwingHigh[i + lookback] = swingHigh[i];
+      delayedSwingLow[i + lookback] = swingLow[i];
+    }
+  }
+
+  return { swingHigh: delayedSwingHigh, swingLow: delayedSwingLow };
 }

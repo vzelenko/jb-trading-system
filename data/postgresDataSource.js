@@ -1,10 +1,11 @@
-import { createDbClient, withDb } from "./db.js";
+import { createDbPool, withDb } from "./db.js";
 
 export function createPostgresDataSource(databaseConfig) {
+  const pool = createDbPool(databaseConfig);
+
   return {
     async loadSecurities({ indexMembership = null } = {}) {
-      const client = createDbClient(databaseConfig);
-      return withDb(client, async (db) => {
+      return withDb(pool, async (client) => {
         const query = indexMembership
           ? `
               SELECT id, ticker, sector, industry, index_membership
@@ -18,7 +19,7 @@ export function createPostgresDataSource(databaseConfig) {
               ORDER BY ticker
             `;
         const params = indexMembership ? [indexMembership] : [];
-        const result = await db.query(query, params);
+        const result = await client.query(query, params);
         return result.rows.map((row) => ({
           id: Number(row.id),
           ticker: row.ticker,
@@ -30,9 +31,8 @@ export function createPostgresDataSource(databaseConfig) {
     },
 
     async loadDailyCandles({ securityIds, startDate, endDate, timeframe = 1 }) {
-      const client = createDbClient(databaseConfig);
-      return withDb(client, async (db) => {
-        const result = await db.query(
+      return withDb(pool, async (client) => {
+        const result = await client.query(
           `
             SELECT security_id,
                    date::date AS date,
@@ -62,6 +62,12 @@ export function createPostgresDataSource(databaseConfig) {
           timeframe: Number(row.timeframe)
         }));
       });
+    },
+
+    async close() {
+      if (pool) {
+        await pool.end();
+      }
     }
   };
 }

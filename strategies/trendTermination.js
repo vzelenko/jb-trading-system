@@ -8,6 +8,12 @@ export function buildTrendTerminationSignal(context, index, config) {
     return null;
   }
 
+  // Require weekly extended or exhaustion for short entries
+  const weeklyTrend = context.weekly?.trendType ?? 0;
+  if (![4, 5].includes(weeklyTrend)) {
+    return null;
+  }
+
   const extension = Number.isFinite(candle.atr) ? (candle.close_price - candle.emaSlow) / candle.atr : 0;
   const histSlice = context.daily
     .slice(Math.max(0, index - strategyConfig.exhaustionHistogramLookback + 1), index + 1)
@@ -25,7 +31,9 @@ export function buildTrendTerminationSignal(context, index, config) {
   const target1 = candle.emaSlow;
   const target2 = candle.emaSlow - ((stopPrice - candle.close_price) * 0.75);
 
-  if (!Number.isFinite(stopPrice) || stopPrice <= candle.close_price) {
+  if (!Number.isFinite(stopPrice) || stopPrice <= candle.close_price ||
+      !Number.isFinite(target1) || !Number.isFinite(target2) ||
+      target1 >= candle.close_price || target2 >= candle.close_price) {
     return null;
   }
 

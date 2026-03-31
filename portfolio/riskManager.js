@@ -10,6 +10,10 @@ export function calculateGrossExposure(openPositions) {
 }
 
 export function canOpenPosition({ portfolioState, signal, proposedRiskAmount, proposedNotional, config }) {
+  if (portfolioState.equity <= 0) {
+    return false;
+  }
+
   if (portfolioState.openPositions.length >= config.portfolio.maxPositions) {
     return false;
   }

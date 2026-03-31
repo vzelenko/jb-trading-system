@@ -4,7 +4,7 @@ import { alignWeeklyTrend } from "../trend/multiTimeframe.js";
 import { generateSignalsForContext } from "../strategies/index.js";
 import { createPortfolioState, attemptEntry, markToMarket } from "../portfolio/portfolioManager.js";
 import { selectTradableUniverse } from "./sectorRotation.js";
-import { updateOpenPositions } from "./positionManager.js";
+import { updateOpenPositions, exitRemaining } from "./positionManager.js";
 import { calculatePerformanceMetrics, calculateBreakdowns } from "../analytics/metrics.js";
 import { buildTradeLogRows } from "../analytics/tradeLog.js";
 import { writeCsv, writeJson } from "../utils/io.js";
@@ -14,13 +14,27 @@ export async function runBacktest({ dataSource, config }) {
   const portfolioState = createPortfolioState(config);
   const pendingSignals = new Map();
 
+  // Pre-build O(1) lookup maps to avoid O(n) .find() per bar per security
+  const candleBySecurityAndDate = new Map();
+  const indexBySecurityAndDate = new Map();
+  for (const [securityId, series] of marketData.dailyBySecurity.entries()) {
+    const dateMap = new Map();
+    const indexMap = new Map();
+    for (let i = 0; i < series.length; i++) {
+      dateMap.set(series[i].date, series[i]);
+      indexMap.set(series[i].date, i);
+    }
+    candleBySecurityAndDate.set(securityId, dateMap);
+    indexBySecurityAndDate.set(securityId, indexMap);
+  }
+
   for (let dateIndex = 0; dateIndex < marketData.alignedDates.length; dateIndex += 1) {
     const currentDate = marketData.alignedDates[dateIndex];
     const nextDate = marketData.alignedDates[dateIndex + 1];
     const dailyPriceMap = new Map();
 
-    for (const [securityId, series] of marketData.dailyBySecurity.entries()) {
-      const candle = series.find((item) => item.date === currentDate);
+    for (const [securityId, dateMap] of candleBySecurityAndDate.entries()) {
+      const candle = dateMap.get(currentDate);
       if (candle) {
         dailyPriceMap.set(securityId, candle);
       }
@@ -28,16 +42,14 @@ export async function runBacktest({ dataSource, config }) {
 
     updateOpenPositions({ portfolioState, currentDate, priceMap: dailyPriceMap });
 
-    const tradable = selectTradableUniverse({ marketData, currentDate, config });
+    const tradable = selectTradableUniverse({ marketData, currentDate, config, candleBySecurityAndDate });
 
     for (const signal of pendingSignals.get(currentDate) ?? []) {
       if (!tradable.tradableSecurities.has(signal.securityId)) {
         continue;
       }
 
-      const nextCandle = marketData.dailyBySecurity
-        .get(signal.securityId)
-        ?.find((candle) => candle.date === currentDate);
+      const nextCandle = candleBySecurityAndDate.get(signal.securityId)?.get(currentDate);
       if (nextCandle) {
         const position = attemptEntry({ portfolioState, signal, nextCandle, config });
         if (position) {
@@ -60,7 +72,7 @@ export async function runBacktest({ dataSource, config }) {
           continue;
         }
 
-        const candleIndex = dailySeries.findIndex((candle) => candle.date === currentDate);
+        const candleIndex = indexBySecurityAndDate.get(security.id)?.get(currentDate) ?? -1;
         if (candleIndex < 30) {
           continue;
         }
@@ -85,6 +97,16 @@ export async function runBacktest({ dataSource, config }) {
     markToMarket(portfolioState, dailyPriceMap);
     portfolioState.equityCurve.push({ date: currentDate, equity: portfolioState.equity });
   }
+
+  // Close all remaining open positions at last known price
+  const lastDate = marketData.alignedDates[marketData.alignedDates.length - 1];
+  for (const position of [...portfolioState.openPositions]) {
+    const candle = candleBySecurityAndDate.get(position.securityId)?.get(lastDate);
+    if (candle) {
+      exitRemaining(portfolioState, position, lastDate, candle.close_price, "end_of_backtest");
+    }
+  }
+  markToMarket(portfolioState, new Map());
 
   const metrics = calculatePerformanceMetrics(portfolioState);
   const breakdowns = calculateBreakdowns(portfolioState.closedTrades);

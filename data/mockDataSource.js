@@ -5,9 +5,13 @@ export function createMockDataSource() {
     async loadSecurities() {
       return sampleData.securities;
     },
-    async loadDailyCandles({ startDate, endDate }) {
+    async loadDailyCandles({ startDate, endDate, securityIds }) {
       return sampleData.priceCandles.filter(
-        (candle) => candle.date >= startDate && candle.date <= endDate && candle.timeframe === 1
+        (candle) =>
+          candle.date >= startDate &&
+          candle.date <= endDate &&
+          candle.timeframe === 1 &&
+          (!securityIds || securityIds.includes(candle.security_id))
       );
     }
   };

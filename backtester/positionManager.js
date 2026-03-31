@@ -13,7 +13,10 @@ export function updateOpenPositions({ portfolioState, currentDate, priceMap }) {
       ? candle.low_price <= position.stopPrice
       : candle.high_price >= position.stopPrice;
     if (stopHit) {
-      exitRemaining(portfolioState, position, currentDate, position.stopPrice, "stop");
+      const gapFill = position.direction === "long"
+        ? Math.min(candle.open_price, position.stopPrice)
+        : Math.max(candle.open_price, position.stopPrice);
+      exitRemaining(portfolioState, position, currentDate, gapFill, "stop");
       continue;
     }
 
@@ -46,12 +49,11 @@ export function updateOpenPositions({ portfolioState, currentDate, priceMap }) {
 }
 
 function scaleOut(portfolioState, position, exitPrice) {
-  const sharesToExit = Math.floor(position.remainingShares / 2);
-  if (sharesToExit <= 0) {
-    position.t1Hit = true;
-    position.stopPrice = position.entryPrice;
+  if (position.remainingShares < 1) {
     return;
   }
+
+  const sharesToExit = Math.max(1, Math.floor(position.remainingShares / 2));
 
   const pnl = calculatePnl(position, exitPrice, sharesToExit);
   portfolioState.cash += exitCashDelta(position, exitPrice, sharesToExit);
@@ -59,10 +61,11 @@ function scaleOut(portfolioState, position, exitPrice) {
   position.realizedPnl += pnl;
   position.t1Hit = true;
   position.stopPrice = position.entryPrice;
-  position.openRiskAmount = position.remainingShares * position.riskPerShare;
+  position.riskPerShare = 0;
+  position.openRiskAmount = 0;
 }
 
-function exitRemaining(portfolioState, position, exitDate, exitPrice, reason) {
+export function exitRemaining(portfolioState, position, exitDate, exitPrice, reason) {
   const pnl = position.realizedPnl + calculatePnl(position, exitPrice, position.remainingShares);
   portfolioState.cash += exitCashDelta(position, exitPrice, position.remainingShares);
   const totalR = position.riskPerShare === 0 ? null : pnl / (position.riskPerShare * position.shares);

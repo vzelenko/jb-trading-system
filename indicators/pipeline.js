@@ -19,8 +19,11 @@ export function enrichSeriesWithIndicators(candles, indicatorConfig) {
     indicatorConfig.macdSignal
   );
   const atrValues = atr(candles, indicatorConfig.atrLength);
-  const roc20 = roc(closes, 20);
-  const roc50 = roc(closes, 50);
+  const rocPeriods = indicatorConfig.rocPeriods ?? [20, 50];
+  const rocValues = {};
+  for (const period of rocPeriods) {
+    rocValues[`roc${period}`] = roc(closes, period);
+  }
   const swings = detectSwings(candles, indicatorConfig.swingLookback);
   const levels = detectLevels(
     candles,
@@ -28,21 +31,27 @@ export function enrichSeriesWithIndicators(candles, indicatorConfig) {
     indicatorConfig.supportResistanceTolerancePct
   );
 
-  return candles.map((candle, index) => ({
-    ...candle,
-    emaFast: emaFast[index],
-    emaSlow: emaSlow[index],
-    hmaFast: hmaFast[index],
-    hmaSlow: hmaSlow[index],
-    macdLine: macdValues.line[index],
-    macdSignal: macdValues.signal[index],
-    macdHistogram: macdValues.histogram[index],
-    atr: atrValues[index],
-    roc20: roc20[index],
-    roc50: roc50[index],
-    isSwingHigh: swings.swingHigh[index],
-    isSwingLow: swings.swingLow[index],
-    resistanceLevel: levels.resistance[index],
-    supportLevel: levels.support[index]
-  }));
+  return candles.map((candle, index) => {
+    const rocFields = {};
+    for (const period of rocPeriods) {
+      rocFields[`roc${period}`] = rocValues[`roc${period}`][index];
+    }
+
+    return {
+      ...candle,
+      emaFast: emaFast[index],
+      emaSlow: emaSlow[index],
+      hmaFast: hmaFast[index],
+      hmaSlow: hmaSlow[index],
+      macdLine: macdValues.line[index],
+      macdSignal: macdValues.signal[index],
+      macdHistogram: macdValues.histogram[index],
+      atr: atrValues[index],
+      ...rocFields,
+      isSwingHigh: swings.swingHigh[index],
+      isSwingLow: swings.swingLow[index],
+      resistanceLevel: levels.resistance[index],
+      supportLevel: levels.support[index]
+    };
+  });
 }

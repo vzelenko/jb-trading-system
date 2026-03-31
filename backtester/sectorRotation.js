@@ -1,16 +1,13 @@
 import { average } from "../utils/math.js";
 
-export function selectTradableUniverse({ marketData, currentDate, config }) {
+export function selectTradableUniverse({ marketData, currentDate, config, candleBySecurityAndDate }) {
   const sectorScores = new Map();
   const stockScores = new Map();
 
   for (const security of marketData.securities) {
-    const series = marketData.dailyBySecurity.get(security.id);
-    if (!series) {
-      continue;
-    }
-
-    const candle = series.find((item) => item.date === currentDate);
+    const candle = candleBySecurityAndDate
+      ? candleBySecurityAndDate.get(security.id)?.get(currentDate)
+      : marketData.dailyBySecurity.get(security.id)?.find((item) => item.date === currentDate);
     if (!candle) {
       continue;
     }

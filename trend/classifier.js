@@ -16,6 +16,7 @@ function slopeDown(series, index, lookback) {
 
 export function classifyTrendSeries(candles, config) {
   const slopeLookback = config.indicators.slopeLookback;
+  const emaSlowSeries = candles.map((item) => item.emaSlow);
 
   return candles.map((candle, index, series) => {
     const close = candle.close_price;
@@ -23,7 +24,6 @@ export function classifyTrendSeries(candles, config) {
     const emaSlow = candle.emaSlow;
     const atr = candle.atr;
     const histogramPrev = index > 0 ? series[index - 1].macdHistogram : null;
-    const emaSlowSeries = series.map((item) => item.emaSlow);
     let trendType = 0;
     let trendLabel = "Undefined";
 
