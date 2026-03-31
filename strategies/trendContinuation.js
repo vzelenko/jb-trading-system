@@ -32,7 +32,7 @@ export function buildTrendContinuationSignal(context, index, config) {
 
   const stopFromSwing = lastSwingLow(context.daily, index, strategyConfig.stopAtrMultiplier);
   const stopFromAtr = candle.close_price - ((candle.atr ?? 0) * strategyConfig.stopAtrMultiplier);
-  const stopPrice = Math.min(stopFromSwing, stopFromAtr);
+  const stopPrice = Math.max(stopFromSwing, stopFromAtr);
   const target1 = priorSwingHigh(context.daily, index) ?? (candle.close_price + ((candle.close_price - stopPrice) * 1.5));
   const riskPerShare = candle.close_price - stopPrice;
   const rewardToTarget1 = target1 - candle.close_price;

@@ -41,7 +41,7 @@ export const defaultConfig = {
     trendContinuation: {
       enabled: true,
       pullbackAtrThreshold: 0.8,
-      stopAtrMultiplier: 1.75,
+      stopAtrMultiplier: 2.5,
       target2RMultiple: 2,
       minRewardToTarget1: 0.75,
       requirePriorPullback: true,
@@ -51,12 +51,12 @@ export const defaultConfig = {
       enabled: true,
       consolidationBars: 10,
       retestBars: 3,
-      stopAtrBuffer: 0.3,
+      stopAtrBuffer: 0.75,
       minTouches: 3,
       minBreakoutClosePct: 0.0025,
       maxBreakoutExtensionAtr: 1.2,
       minRewardToTarget2: 1.25,
-      targetAtrMultiplier: 2.5
+      targetAtrMultiplier: 3.0
     },
     breakoutFailure: {
       enabled: false,

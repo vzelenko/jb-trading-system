@@ -61,7 +61,7 @@ export function buildBreakoutSignal(context, index, config) {
     trendType: candle.trendType,
     weeklyTrendType: context.weekly.trendType,
     stopPrice,
-    target1: candle.close_price + riskPerShare,
+    target1: candle.close_price + riskPerShare * 1.5,
     target2,
     metadata: {
       breakoutLevel: resistance

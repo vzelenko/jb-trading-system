@@ -39,11 +39,13 @@ export function updateOpenPositions({ portfolioState, currentDate, priceMap }) {
       }
     }
 
-    const hmaCrossAgainst = position.direction === "long"
-      ? candle.hmaFast < candle.hmaSlow
-      : candle.hmaFast > candle.hmaSlow;
-    if (hmaCrossAgainst) {
-      exitRemaining(portfolioState, position, currentDate, candle.close_price, "hma_cross");
+    if (position.t1Hit) {
+      const hmaCrossAgainst = position.direction === "long"
+        ? candle.hmaFast < candle.hmaSlow && candle.close_price < candle.hmaSlow
+        : candle.hmaFast > candle.hmaSlow && candle.close_price > candle.hmaSlow;
+      if (hmaCrossAgainst) {
+        exitRemaining(portfolioState, position, currentDate, candle.close_price, "hma_cross");
+      }
     }
   }
 }
@@ -61,6 +63,7 @@ function scaleOut(portfolioState, position, exitPrice) {
   position.realizedPnl += pnl;
   position.t1Hit = true;
   position.stopPrice = position.entryPrice;
+  position.initialRiskPerShare = position.initialRiskPerShare ?? position.riskPerShare;
   position.riskPerShare = 0;
   position.openRiskAmount = 0;
 }
@@ -68,7 +71,8 @@ function scaleOut(portfolioState, position, exitPrice) {
 export function exitRemaining(portfolioState, position, exitDate, exitPrice, reason) {
   const pnl = position.realizedPnl + calculatePnl(position, exitPrice, position.remainingShares);
   portfolioState.cash += exitCashDelta(position, exitPrice, position.remainingShares);
-  const totalR = position.riskPerShare === 0 ? null : pnl / (position.riskPerShare * position.shares);
+  const effectiveRiskPerShare = position.riskPerShare || position.initialRiskPerShare;
+  const totalR = effectiveRiskPerShare ? pnl / (effectiveRiskPerShare * position.shares) : null;
 
   closePosition(portfolioState, position, {
     exitDate,
